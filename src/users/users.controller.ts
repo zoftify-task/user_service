@@ -1,13 +1,15 @@
-import { Body, Controller, Delete, Get, Inject, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { MockUsersService } from './mock-users.service.js';
 import { CRUDServiceInterface } from './interfaces/crud-service.interface.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UpdateUserDto } from './dto/update-user.dto.js';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard.js';
 
+@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(
-    @Inject('CRUDServiceInterface') 
+    @Inject('CRUDServiceInterface')
     private readonly usersService: CRUDServiceInterface,
   ) { }
 
