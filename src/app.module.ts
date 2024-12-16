@@ -1,12 +1,10 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
-import { UsersController } from './users/users.controller';
-import { MockUsersService } from './users/mock-users.service';
 import { LoggingMiddleware } from './logging/logging.middleware.js';
 import { FileLoggerService } from './logging/file-logger.service.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { UsersService } from './users/users.service.js';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +21,7 @@ import { UsersService } from './users/users.service.js';
       entities: []
     }),
     UsersModule,
+    AuthModule,
   ],
   providers: [
     {
