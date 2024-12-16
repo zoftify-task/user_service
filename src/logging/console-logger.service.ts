@@ -5,7 +5,7 @@ import { LoggerInterface } from './interfaces/LoggerInterface.js';
 export class ConsoleLoggerService implements LoggerInterface {
   log(message: string): void {
     const timestamp = new Date().toISOString();
-    const logMessage = `[${timestamp}] ${message}`
+    const logMessage = `[${timestamp}] ${message}`;
     console.log(logMessage);
   }
 }

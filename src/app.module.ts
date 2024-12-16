@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './user/user.module';
 import { LoggingMiddleware } from './logging/logging.middleware.js';
 import { FileLoggerService } from './logging/file-logger.service.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -18,19 +18,18 @@ import { AuthModule } from './auth/auth.module';
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      entities: []
+      entities: [],
     }),
-    UsersModule,
+    UserModule,
     AuthModule,
   ],
   providers: [
     {
       provide: 'LoggerInterface',
-      useClass: FileLoggerService
-    }
+      useClass: FileLoggerService,
+    },
   ],
 })
-
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggingMiddleware).forRoutes('*');
