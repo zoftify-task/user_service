@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { User } from '../models/user.interface.js';
-import { CRUDServiceInterface } from '../interfaces/crud-service.interface.js';
+import { CRUDServiceInterface } from '../models/crud-service.interface.js';
 import { CreateUserDto } from '../dto/create-user.dto.js';
 import { UpdateUserDto } from '../dto/update-user.dto.js';
 

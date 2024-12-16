@@ -9,14 +9,14 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { CRUDServiceInterface } from '../interfaces/crud-service.interface';
+import { CRUDServiceInterface } from '../models/crud-service.interface';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { JwtGuard } from '../../auth/guards/jwt-auth.guard';
 
 @UseGuards(JwtGuard)
 @Controller('users')
-export class UserController {
+export class UsersController {
   
   constructor(
     @Inject('CRUDServiceInterface')

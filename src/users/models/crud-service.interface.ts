@@ -1,6 +1,6 @@
 import { CreateUserDto } from '../dto/create-user.dto.js';
 import { UpdateUserDto } from '../dto/update-user.dto.js';
-import { User } from '../models/user.interface.js';
+import { User } from './user.interface.js';
 
 export interface CRUDServiceInterface {
   findAll(): Promise<User[]>;

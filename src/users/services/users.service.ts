@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CRUDServiceInterface } from '../interfaces/crud-service.interface';
+import { CRUDServiceInterface } from '../models/crud-service.interface';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,11 +11,11 @@ import { UserEntity } from '../models/user.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class UserService implements CRUDServiceInterface {
+export class UsersService implements CRUDServiceInterface {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
-  ) {}
+  ) { }
 
   async findAll(): Promise<UserEntity[]> {
     return this.userRepository.find();
@@ -48,9 +48,7 @@ export class UserService implements CRUDServiceInterface {
   private async validateUniqueEmail(email: string, id?: number) {
     const user = await this.userRepository.findOneBy({ email });
     if (user && user.id !== id) {
-      throw new BadRequestException(
-        `User with email '${email}' already exists`,
-      );
+      throw new BadRequestException(`User with email '${email}' already exists`);
     }
   }
 }

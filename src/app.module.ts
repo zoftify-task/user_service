@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
+import { UsersModule } from './users/users.module';
 import { LoggingMiddleware } from './logging/logging.middleware.js';
 import { FileLoggerService } from './logging/file-logger.service.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -20,7 +20,7 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true,
       entities: [],
     }),
-    UserModule,
+    UsersModule,
     AuthModule,
   ],
   providers: [
