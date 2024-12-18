@@ -18,8 +18,8 @@ This project is a REST API for user management using NestJS, TypeORM, and Postgr
 
 1. **Clone the repository:**
    ```bash
-   git clone [<repository_url>](https://github.com/zoftify-task/users_service)
-   cd <folder_name>
+   git clone https://github.com/zoftify-task/users_service
+   cd user_service
    ```
 
 2. **Install dependencies:**
