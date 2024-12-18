@@ -137,7 +137,7 @@ Once running, the API is available at `http://localhost:3000`.
 
 ## Additional Information
 
-- **Logging:** All requests are logged to the console.
+- **Logging:** All requests are logged to the file.
 - **Error Handling:** A global filter is used to handle exceptions and return appropriate HTTP responses.
 - **Validation:** Implemented using `class-validator` and `class-transformer`.
 
