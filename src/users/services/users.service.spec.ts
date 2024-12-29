@@ -1,13 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MockUsersService } from '@src/users/services/mock-users.service.js';
-import { UsersService } from '@src/users/services/users.service.js';
-import { UserEntity } from '@src/users/models/user.entity.js';
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from '../models/user.interface.js';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from '../dto/create-user.dto.js';
-import { rejects } from 'assert';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UsersService } from './users.service';
+import { UserEntity } from '../models/user.entity';
 
 describe('UsersService', () => {
   let userService: UsersService;
