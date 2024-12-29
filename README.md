@@ -1,73 +1,143 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# README
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This project is a REST API for user management using NestJS, TypeORM, and PostgreSQL. It implements JWT authentication.
+
+---
+
+## Requirements
+
+- **Node.js** (v16 and above)
+- **npm** (v8 and above)
+- **PostgreSQL** (v13 and above)
+
+---
 
 ## Installation
 
-```bash
-$ npm install
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/zoftify-task/users_service
+   cd user_service
+   ```
 
-## Running the app
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-```bash
-# development
-$ npm run start
+3. **Create an environment file:**
+   In the root of the project, create a `.env` file and add the following variables:
+   ```env
+   NODE_ENV=development
+   PORT=3000
 
-# watch mode
-$ npm run start:dev
+   DATABASE_HOST=localhost
+   DATABASE_PORT=5432
+   DATABASE_USERNAME=your_username
+   DATABASE_PASSWORD=your_password
+   DATABASE_NAME=your_database
 
-# production mode
-$ npm run start:prod
-```
+   JWT_SECRET=your_jwt_secret
+   JWT_EXPIRATION_TIME=3600
+   ```
 
-## Test
+4. **Set up the database:**
+   Ensure PostgreSQL is running and create the database specified in `DATABASE_NAME`.
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## Running the Application
 
-# test coverage
-$ npm run test:cov
-```
+1. **Start in development mode:**
+   ```bash
+   npm run start:dev
+   ```
 
-## Support
+2. **Start in production mode:**
+   ```bash
+   npm run build
+   npm run start:prod
+   ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+3. **Run tests:**
+   ```bash
+   npm run test
+   ```
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## API Usage
 
-## License
+Once running, the API is available at `http://localhost:3000`.
 
-Nest is [MIT licensed](LICENSE).
+### Available Routes
+
+#### Authentication
+- `POST /auth/register` - Register a user
+  - Request body:
+    ```json
+    {
+      "name": "string",
+      "email": "string",
+      "password": "string"
+    }
+    ```
+- `POST /auth/login` - Authenticate a user
+  - Request body:
+    ```json
+    {
+      "email": "string",
+      "password": "string"
+    }
+    ```
+
+#### Users
+- `GET /users` - Get a list of users (requires JWT)
+- `GET /users/:id` - Get a user by ID (requires JWT)
+- `POST /users` - Create a user (requires JWT)
+  - Request body:
+    ```json
+    {
+      "name": "string",
+      "email": "string",
+      "password": "string"
+    }
+    ```
+- `PATCH /users/:id` - Update a user (requires JWT)
+  - Request body (example):
+    ```json
+    {
+      "name": "Updated Name"
+    }
+    ```
+- `DELETE /users/:id` - Delete a user (requires JWT)
+
+---
+
+## Testing
+
+1. **Run all tests:**
+   ```bash
+   npm run test
+   ```
+
+2. **Run tests with coverage:**
+   ```bash
+   npm run test:cov
+   ```
+
+3. **Run tests in watch mode:**
+   ```bash
+   npm run test:watch
+   ```
+
+---
+
+## Additional Information
+
+- **Logging:** All requests are logged to the file.
+- **Error Handling:** A global filter is used to handle exceptions and return appropriate HTTP responses.
+- **Validation:** Implemented using `class-validator` and `class-transformer`.
+
